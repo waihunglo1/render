@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors')
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use(cors());
 
 // Proxy endpoints
 const API_SERVICE_URL = "https://stockcharts.com/";
