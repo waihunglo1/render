@@ -16,6 +16,19 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 var indexRouter = require('./routes/index');
 var yahooRouter = require('./routes/yahoo');
 
+/**
+ * Proxy endpoints for /stockcharts routing
+ */
+const options = {
+  target: "https://stockcharts.com/",
+  changeOrigin: true,
+  pathRewrite: {
+      [`^/stockcharts`]: '',
+  }
+};
+
+const myProxy = createProxyMiddleware(options);
+
 var app = express();
 
 // view engine setup
@@ -31,16 +44,7 @@ app.use(cors()); // disable cors
 // setup entry point
 app.use('/', indexRouter);
 app.use('/yahoo', yahooRouter);
-
-// Proxy endpoints for /stockcharts routing
-const API_SERVICE_URL = "https://stockcharts.com/";
-app.use('/stockcharts', createProxyMiddleware({
-  target: API_SERVICE_URL,
-  changeOrigin: true,
-  pathRewrite: {
-      [`^/stockcharts`]: '',
-  },
-}));
+app.use('/stockcharts', myProxy);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -59,4 +63,5 @@ app.use(function (err, req, res, next) {
 });
 
 
-module.exports = app;
+
+module.exports = app
