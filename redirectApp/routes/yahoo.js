@@ -11,12 +11,14 @@ router.get('/', function (req, res, next) {
   // previous 25 days
   var targetDate = moment().subtract(25, "days");
   var todayStr = targetDate.format("YYYY-MM-DD");
-  const stockCodesStr = req.query.cgo;
+  const cgo = req.query.cgo;
   var stockCodes = [];
+  var taIndicator = "M5";
 
-  console.log("date:" + todayStr + " cgo:" + stockCodesStr);  
-  if (!empty(stockCodesStr)) {
-    stockCodes = stockCodesStr.split(",");
+  console.log("date:" + todayStr + " cgo:" + cgo);  
+  if (!empty(cgo)) {
+    stockCodes = cgo.split("|")[0].split(",");
+    taIndicator = cgo.split("|")[1];
   } 
 
   queryMultipleStockTechIndicator(todayStr, stockCodes)
