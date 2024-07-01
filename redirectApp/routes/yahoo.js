@@ -13,15 +13,15 @@ router.get('/', function (req, res, next) {
   var todayStr = targetDate.format("YYYY-MM-DD");
   const cgo = req.query.cgo;
   var stockCodes = [];
-  var taIndicator = "M5";
+  var taIndicatorStr = "M12";
 
   console.log("date:" + todayStr + " cgo:" + cgo);  
   if (!empty(cgo)) {
     stockCodes = cgo.split("|")[0].split(",");
-    taIndicator = cgo.split("|")[1];
+    taIndicatorStr = cgo.split("|")[1];
   } 
 
-  queryMultipleStockTechIndicator(todayStr, stockCodes)
+  queryMultipleStockTechIndicator(todayStr, stockCodes, taIndicatorStr)
     .then(function (stocks) {
       res.json(stocks);
     });
@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
  * @param {*} stockCodes 
  * @returns 
  */
-const queryMultipleStockTechIndicator = async (todayStr, stockCodes) => {
+const queryMultipleStockTechIndicator = async (todayStr, stockCodes, taIndicatorStr) => {
   var bars = [];
   var stockList = [];
 
@@ -43,7 +43,7 @@ const queryMultipleStockTechIndicator = async (todayStr, stockCodes) => {
         "symbol": code,
         "extra": 0
       }
-      queryHistoryPrices(todayStr, stock)
+      queryHistoryPrices(todayStr, stock, taIndicatorStr)
         .then(function () {
           stockList.push(stock);
           resolve(stock);
@@ -72,19 +72,22 @@ const queryMultipleStockTechIndicator = async (todayStr, stockCodes) => {
  * @param {*} stockCodeStr 
  * @returns 
  */
-const queryHistoryPrices = async (todayStr, stock) => {
+const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
   // format query options
   const queryOptions = { period1: todayStr, /* ... */ };
   const stockPrices = await yahooFinance.historical(stock.symbol, queryOptions);
 
   // create tech indicator
-  const sma = new taIndicator.SMA(10);
-  const rsi = new taIndicator.RSI(12);
+  const rsi = new taIndicator.RSI(14);
   const roc = new taIndicator.ROC(12);
 
   // calculate
   stockPrices.forEach((row, idx) => {
-    stock.extra = roc.nextValue(row.adjClose);
+    if (taIndicatorStr == "M12") {
+      stock.extra = roc.nextValue(row.adjClose);
+    } else {
+      stock.extra = rsi.nextValue(row.adjClose);
+    }
   });
 
   return stock;
