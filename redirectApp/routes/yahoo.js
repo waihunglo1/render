@@ -23,7 +23,6 @@ router.get('/', function (req, res, next) {
 
   queryMultipleStockTechIndicator(todayStr, stockCodes)
     .then(function (stocks) {
-      // res.send(stocks);
       res.json(stocks);
     });
 });
@@ -59,7 +58,12 @@ const queryMultipleStockTechIndicator = async (todayStr, stockCodes) => {
       console.log(values);
   });
 
-  return stockList;
+  
+  // Creating response object
+  let responseJson = new Object();
+  responseJson.stocks = stockList;
+
+  return responseJson;
 }
 
 /**
