@@ -1,8 +1,4 @@
 /**
- * to start npm start under redirectApp directory
- * C:\Users\user\Documents\GitHub\render\redirectApp> npm start
- * test from browser
- * http://localhost:3000/stockcharts/c-sc/sc?r=1718500840433&chart=LAND,uu[305,a]dacayaci[pb20!b50][dg][ilM12]
  * 
  */
 var createError = require('http-errors');
