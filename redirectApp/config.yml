@@ -5,6 +5,6 @@ indexes:
   - name: IXIC
     breadth: $NAA20R,$NAA50R,$NAA150R,$NAA200R
   - name: DJI
-    breadth: $DOWA20R,$DOWA50R,$NAA150R,$DOWA200R
+    breadth: $DOWA20R,$DOWA50R,$DOWA150R,$DOWA200R
   - name: GSPC
     breadth: $SPXA20R,$SPXA50R,$SPXA150R,$SPXA200R
