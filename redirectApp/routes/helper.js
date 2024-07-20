@@ -25,7 +25,7 @@ const determineDays = (taIndicatorStr) => {
 const round = (num, decimalPlaces = 0) => {
     var p = Math.pow(10, decimalPlaces);
     var n = (num * p) * (1 + Number.EPSILON);
-    return Math.round(n) / p;
+    return Number(Math.round(n) / p).toFixed(2);
 } 
  
 module.exports = {
