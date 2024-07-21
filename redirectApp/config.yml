@@ -8,3 +8,22 @@ indexes:
     breadth: $DOWA20R,$DOWA50R,$DOWA150R,$DOWA200R
   - name: GSPC
     breadth: $SPXA20R,$SPXA50R,$SPXA150R,$SPXA200R
+
+exchanges:
+  - name: NIM
+    tradingView: NASDAQ
+  - name: PCX
+    tradingView: AMEX
+  - name: NYQ
+    tradingView: NYSE
+  - name: NMS
+    tradingView: NASDAQ
+  - name: NGM
+    tradingView: NASDAQ
+  - name: BTS
+    tradingView: AMEX
+  - name: DJI
+    tradingView: TVC
+      
+
+

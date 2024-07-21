@@ -25,7 +25,18 @@ const breadthByKey = (key) => {
   return breadth;  
 }
 
+const tradingViewExchangeByKey = (key) => {
+  var exchange = null;
+  doc.exchanges.forEach(element => {
+    if(key.includes(element.name)) {
+      exchange = element.tradingView;
+    }
+    });
+  return exchange;  
+}
+
 module.exports = {
     read,
-    breadthByKey
+    breadthByKey,
+    tradingViewExchangeByKey
 };

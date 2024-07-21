@@ -21,4 +21,21 @@ router.get('/', function (req, res, next) {
   }
 });
 
+/**
+ * quote summary function
+ */
+router.get('/summary', function (req, res, next) {
+  const cgo = req.query.cgo;
+  var stockCodes = [];
+  var taIndicatorStr = "M12";
+  if (!helper.isEmpty(cgo)) {
+    stockCodes = cgo.split("|")[0].split(",");
+
+    yahooutils.queryMultipleStockQuote(stockCodes)
+      .then(function (stocks) {
+        res.json(stocks);
+      });    
+  }
+});
+
 module.exports = router;
