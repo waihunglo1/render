@@ -3,3 +3,12 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  a(href='/yahoo?cgo=^IXIC,^DJI|S50') testcase01
+  br
+  a(href='/yahoo?cgo=0001.HK,0002.HK,0003.HK|B14') testcase02
+  br
+  a(href='/dscan?cgo=$NAA20R,$NAA50R,$NAA150R,$NAA200R') testcase03
+  br
+  a(href='/stockcharts/c-sc/sc?r=1718500840433&chart=LAND,uu[305,a]dacayaci[pb20!b50][dg][ilM12]') testcase04
+  br
+  a(href='/stockcharts/def/servlet/SC.uscan?cgo=SPY,MSFT,CPNG,TECK|B14&p=1&format=json&order=d') testcase05
