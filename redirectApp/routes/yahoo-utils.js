@@ -75,10 +75,21 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
       } else {
         stock.extra = rsi.nextValue(row.adjClose);
       }
+
+      // open/high/low/close
+      stock.close = row.adjClose;
+      stock.open = row.open;
+      stock.high = row.high;
+      stock.low = row.low;
+      stock.vol = row.volume;
     });
 
     // fill data scan
     await stockcharts.fillDataScan(stock);
+
+    // fill exchange
+    await queryStockQuote(stock);
+
   } catch (err) {
     console.log(err.message);
     console.log(err.name);
@@ -126,14 +137,16 @@ const queryMultipleStockQuote = async (stockCodes) => {
 
 const queryStockQuote = async (stock) => {
   try {
-    const stockQuote =  await yahooFinance.quote(stock.symbol,{ fields: [ "symbol", "exchange", "fullExchangeName" ] });
+    const stockQuote =  await yahooFinance.quote(stock.symbol,{ fields: [ "symbol", "exchange", "fullExchangeName", "quoteType", "longName"] });
     // console.log(stockQuote);
     stock.exchange = stockQuote.exchange;
     stock.fullExchangeName = stockQuote.fullExchangeName;
+    stock.universe = stockQuote.quoteType;
+    stock.name = stockQuote.longName;
 
     var tvExchange = config.tradingViewExchangeByKey(stock.exchange);
     if (! helper.isEmpty(tvExchange)) {
-      stock.tradingViewExchange = tvExchange + ":" + stock.symbol;
+      stock.tradingViewSymbol = tvExchange + ":" + stock.symbol;
     } else {
       stock.errmsg = stock.exchange + " exchange mapping not found";
     }
