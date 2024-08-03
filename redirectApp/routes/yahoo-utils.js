@@ -78,7 +78,7 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
       }
 
       // open/high/low/close
-      stock.close = row.adjClose;
+      stock.close = helper.round(row.adjClose, 2);
       stock.open = row.open;
       stock.high = row.high;
       stock.low = row.low;
