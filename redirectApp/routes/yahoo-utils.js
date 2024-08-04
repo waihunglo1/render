@@ -72,7 +72,7 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
         stock.extra = roc.nextValue(row.adjClose);
       } else if (taIndicatorStr == "B14") {
         stock.extra = rsi.nextValue(row.adjClose);
-      } else if (taIndicatorStr == "S50") {
+      } else if (taIndicatorStr == "S50DF") {
         // sma50
         stock.sma50 = helper.round(sma50.nextValue(row.adjClose), 2);
         stock.close = helper.round(row.adjClose, 2);

@@ -9,7 +9,7 @@ const isEmpty = (str) => {
 
 const determineDays = (taIndicatorStr) => {
     var days = 25;
-    if (taIndicatorStr == "S50") {
+    if (taIndicatorStr == "S50DF") {
       days = 80;    
     }
     var targetDate = moment().subtract(days, "days");

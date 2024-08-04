@@ -3,18 +3,18 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href='/yahoo?cgo=^IXIC,^DJI|S50') yahoo data scan US index
+  a(href='/yahoo?cgo=^IXIC,^DJI|S50') index-scan
   br
-  a(href='/yahoo?cgo=0001.HK,0002.HK,0003.HK|B14') yahoo data scan hk stocks
+  a(href='/yahoo?cgo=0001.HK,0002.HK,0003.HK|B14') Hk-scan
   br
-  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|B14&p=1&format=json&order=d') yahoo data scan US stocks ROC
+  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|B14&p=1&format=json&order=d') ROC
   br
-  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|M12&p=1&format=json&order=d') yahoo data scan US stocks RSI
+  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|M12&p=1&format=json&order=d') RSI
   br
-  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|S50&p=1&format=json&order=d') yahoo data scan US stocks SMA50
+  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|S50DF&p=1&format=json&order=d') SMA50-DIF
   br  
-  a(href='/dscan?cgo=$NAA20R,$NAA50R,$NAA150R,$NAA200R') stockchart data scan market breadth
+  a(href='/dscan?cgo=$NAA20R,$NAA50R,$NAA150R,$NAA200R') market breadth
   br
-  a(href='/stockcharts/def/servlet/SC.uscan?cgo=SPY,MSFT,CPNG,TECK|B14&p=1&format=json&order=d') stockchart data scan US stock
+  a(href='/stockcharts/def/servlet/SC.uscan?cgo=SPY,MSFT,CPNG,TECK|B14&p=1&format=json&order=d') SC-SCAN
   br
-  a(href='/yahoo/summary?cgo=^IXIC,AAPL,CRM,CTA,MSFT,CPNG,TECK') yahoo data summary US stocks
+  a(href='/yahoo/summary?cgo=^IXIC,AAPL,CRM,CTA,MSFT,CPNG,TECK') YF-SUMMARY
