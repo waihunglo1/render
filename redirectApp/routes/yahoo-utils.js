@@ -152,6 +152,11 @@ const queryStockQuote = async (stock) => {
       stock.errmsg = stock.exchange + " exchange mapping not found";
     }
 
+    var stockCodeFromConfig = config.stockCodeByKey(stock.symbol);
+    if (stockCodeFromConfig != null) {
+      stock.symbol = stockCodeFromConfig;
+    }
+
   } catch (err) {
     console.log(err.message);
     console.log(err.name);

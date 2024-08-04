@@ -35,8 +35,31 @@ const tradingViewExchangeByKey = (key) => {
   return exchange;  
 }
 
+const tradingViewCodeByKey = (key) => {
+  var tradingViewCode = null;
+  doc.indexes.forEach(element => {
+    if(key.includes(element.name)) {
+      tradingViewCode = element.tradingViewCode;
+    }
+    });
+  return tradingViewCode;  
+}
+
+const stockCodeByKey = (key) => {
+  var stockCode = null;
+  doc.indexes.forEach(element => {
+    if(key.includes(element.name)) {
+      stockCode = element.stockCode;
+    }
+    });
+  return stockCode;  
+}
+
+
 module.exports = {
     read,
     breadthByKey,
-    tradingViewExchangeByKey
+    tradingViewExchangeByKey,
+    tradingViewCodeByKey,
+    stockCodeByKey
 };

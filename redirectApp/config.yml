@@ -4,10 +4,16 @@ company: spacelift
 indexes:
   - name: IXIC
     breadth: $NAA20R,$NAA50R,$NAA150R,$NAA200R
+    stockCode: $COMPQ
+    tradingViewCode: NPX
   - name: DJI
     breadth: $DOWA20R,$DOWA50R,$DOWA150R,$DOWA200R
+    stockCode: $INDU
+    tradingViewCode: DJI
   - name: GSPC
     breadth: $SPXA20R,$SPXA50R,$SPXA150R,$SPXA200R
+    stockCode: $SPX
+    tradingViewCode: SPX
 
 exchanges:
   - name: NIM
