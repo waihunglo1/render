@@ -74,10 +74,10 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
         stock.extra = rsi.nextValue(row.adjClose);
       } else if (taIndicatorStr == "S50") {
         // sma50
-        stock.extra = helper.round(sma50.nextValue(row.adjClose), 2);
-        stock.close = helper.round(row.adjClose, 2);d
+        stock.sma50 = helper.round(sma50.nextValue(row.adjClose), 2);
+        stock.close = helper.round(row.adjClose, 2);
         // diff between sma50 vs close
-        stock.diff = helper.round((stock.close - stock.extra) / stock.extra * 100, 2);
+        stock.extra = helper.round((stock.close - stock.sma50) / stock.sma50 * 100, 2);
       } else {
         stock.extra = 0;
       }
