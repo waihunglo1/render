@@ -3,14 +3,18 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href='/yahoo?cgo=^IXIC,^DJI|S50') testcase01
+  a(href='/yahoo?cgo=^IXIC,^DJI|S50') yahoo data scan US index
   br
-  a(href='/yahoo?cgo=0001.HK,0002.HK,0003.HK|B14') testcase02
+  a(href='/yahoo?cgo=0001.HK,0002.HK,0003.HK|B14') yahoo data scan hk stocks
   br
-  a(href='/dscan?cgo=$NAA20R,$NAA50R,$NAA150R,$NAA200R') testcase03
+  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|B14&p=1&format=json&order=d') yahoo data scan US stocks ROC
   br
-  a(href='/stockcharts/c-sc/sc?r=1718500840433&chart=LAND,uu[305,a]dacayaci[pb20!b50][dg][ilM12]') testcase04
+  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|M12&p=1&format=json&order=d') yahoo data scan US stocks RSI
   br
-  a(href='/stockcharts/def/servlet/SC.uscan?cgo=SPY,MSFT,CPNG,TECK|B14&p=1&format=json&order=d') testcase05
+  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|S50&p=1&format=json&order=d') yahoo data scan US stocks SMA50
+  br  
+  a(href='/dscan?cgo=$NAA20R,$NAA50R,$NAA150R,$NAA200R') stockchart data scan market breadth
   br
-  a(href='/yahoo/summary?cgo=^IXIC,AAPL,CRM,CTA,MSFT,CPNG,TECK,') testcase06
+  a(href='/stockcharts/def/servlet/SC.uscan?cgo=SPY,MSFT,CPNG,TECK|B14&p=1&format=json&order=d') stockchart data scan US stock
+  br
+  a(href='/yahoo/summary?cgo=^IXIC,AAPL,CRM,CTA,MSFT,CPNG,TECK') yahoo data summary US stocks

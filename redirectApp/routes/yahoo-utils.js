@@ -68,13 +68,18 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
     // calculate
     stockPrices.forEach((row, idx) => {
       if (taIndicatorStr == "M12") {
+        // roc
         stock.extra = roc.nextValue(row.adjClose);
+      } else if (taIndicatorStr == "B14") {
+        stock.extra = rsi.nextValue(row.adjClose);
       } else if (taIndicatorStr == "S50") {
+        // sma50
         stock.extra = helper.round(sma50.nextValue(row.adjClose), 2);
-        stock.close = helper.round(row.adjClose, 2);
+        stock.close = helper.round(row.adjClose, 2);d
+        // diff between sma50 vs close
         stock.diff = helper.round((stock.close - stock.extra) / stock.extra * 100, 2);
       } else {
-        stock.extra = rsi.nextValue(row.adjClose);
+        stock.extra = 0;
       }
 
       // open/high/low/close
