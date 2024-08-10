@@ -30,6 +30,8 @@ exchanges:
     tradingView: AMEX
   - name: DJI
     tradingView: TVC
+  - name: SNP
+    tradingView: NYSE    
       
 
 

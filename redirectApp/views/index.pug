@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href='/yahoo?cgo=^IXIC,^DJI|S50') index-scan
+  a(href='/yahoo?cgo=^IXIC,^GSPC,^DJI|S50DF&p=1&format=json&order=d') index-scan
   br
   a(href='/yahoo?cgo=0001.HK,0002.HK,0003.HK|B14') Hk-scan
   br

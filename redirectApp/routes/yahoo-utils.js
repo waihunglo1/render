@@ -160,7 +160,14 @@ const queryStockQuote = async (stock) => {
 
     var tvExchange = config.tradingViewExchangeByKey(stock.exchange);
     if (! helper.isEmpty(tvExchange)) {
-      stock.tradingViewSymbol = tvExchange + ":" + stock.symbol;
+      var tradingViewCode = config.tradingViewCodeByKey(stock.symbol);
+
+      if (tradingViewCode == null) {
+        stock.tradingViewSymbol = tvExchange + ":" + stock.symbol;
+      } else {
+        stock.tradingViewSymbol = tvExchange + ":" + tradingViewCode;
+      }
+      
     } else {
       stock.errmsg = stock.exchange + " exchange mapping not found";
     }
