@@ -62,6 +62,8 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
     const rsi = new taIndicator.RSI(14);
     const roc = new taIndicator.ROC(12);
     const sma50 = new taIndicator.SMA(50);
+    const sma20 = new taIndicator.SMA(20);
+    const sma10 = new taIndicator.SMA(10);
 
     console.log("taIndicatorStr :" + taIndicatorStr);
 
@@ -75,9 +77,15 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
       } else if (taIndicatorStr == "S50DF") {
         // sma50
         stock.sma50 = helper.round(sma50.nextValue(row.adjClose), 2);
+        stock.sma20 = helper.round(sma20.nextValue(row.adjClose), 2);
+        stock.sma10 = helper.round(sma10.nextValue(row.adjClose), 2);
         stock.close = helper.round(row.adjClose, 2);
+
         // diff between sma50 vs close
         stock.extra = helper.round((stock.close - stock.sma50) / stock.sma50 * 100, 2);
+        stock.sma50df = helper.round((stock.close - stock.sma50) / stock.sma50 * 100, 2);
+        stock.sma20df = helper.round((stock.close - stock.sma20) / stock.sma20 * 100, 2);
+        stock.sma10df = helper.round((stock.close - stock.sma10) / stock.sma10 * 100, 2);        
       } else {
         stock.extra = 0;
       }
