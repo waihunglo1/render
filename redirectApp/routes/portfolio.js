@@ -45,7 +45,9 @@ const fillDataSync = async (api) => {
         }
     }));
 
-    return dataList;
+    var obj = new Object;
+    obj.data = dataList;
+    return obj;
 }
 
 const handleElement = async (element, api) => {
