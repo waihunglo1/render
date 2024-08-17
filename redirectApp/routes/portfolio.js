@@ -10,10 +10,19 @@ var axiosDebug = require('axios-debug-log/enable');
  * main function
  */
 router.get('/', function (req, res, next) {
-    fillDataSync()
-      .then(function (dataList) {
-        res.json(dataList);
-      });   
+    const api = req.query.api;
+    if (!helper.isEmpty(api)) {
+      fillDataSync(true)
+        .then(function (dataList) {
+          res.json(dataList);
+        });   
+    } else {
+      fillDataSync(false)
+        .then(function (dataList) {
+          res.json(dataList);
+        }); 
+    }
+  
 
 
     // return res.json(responseJson);
@@ -23,13 +32,13 @@ router.get('/', function (req, res, next) {
  * 
  * @returns 
  */
-const fillDataSync = async () => {
+const fillDataSync = async (api) => {
     var portfolios = config.retrievePortfolios();
     var dataList = [];
 
     await Promise.all(portfolios.map(async (elem) => {
         try {
-          let portfolio = await handleElement(elem)  
+          let portfolio = await handleElement(elem, api)  
           dataList.push(portfolio)
         } catch (error) {
           console.log('error'+ error);
@@ -39,17 +48,19 @@ const fillDataSync = async () => {
     return dataList;
 }
 
-const handleElement = async (element) => {
+const handleElement = async (element, api) => {
     var obj = new Object();
 
     obj.desc = element.desc;
     obj.chartDataSource = element.chartDataSource;
     obj.category = element.category
 
-    if(! helper.isEmpty(element.dataUrl)) {
+    if(helper.isEmpty(element.dataUrl)) {
+        obj.data = element.data.split(",");
+     } else if(api == true && ! helper.isEmpty(element.dataUrl)) {
         obj.data = await fillData(element.dataUrl) 
      } else {
-         obj.data = element.data.split(",");
+        obj.data = element.data.split(",");
      }
 
      return obj;
