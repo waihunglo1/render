@@ -4,6 +4,7 @@ var validator = require("isin-validator");
 const helper = require('./helper.js');
 const config = require('./config.js');
 var axios = require('axios').default;
+var axiosDebug = require('axios-debug-log/enable');
 
 /*
  * main function
@@ -66,6 +67,9 @@ const fillData = async (dataUrl) => {
 
     var bar = new Promise((resolve, reject) => {
         axios.get(dataUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1'
+            },            
             params: {
             }
         })
