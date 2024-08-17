@@ -195,7 +195,7 @@ portfolios:
     chartDataSource: SC
     category: US-SECTOR
     data: XLY,XLC,XLK,XLI,XLB,XLE,XLP,XLV,XLU,XLF,XLRE,RSP,RSPC,RSPD,RSPS,RSPG,RSPF,RSPH,RSPN,RSPM,RSPR,RSPT,RSPU
-  - desc: 
+  - desc: CRYPTO-CURRENCY
     chartDataSource: SC
     category: US-SECTOR
     data: Crypto Currency,$BTCUSD,$ETHUSD,$XRPUSD,$BCHUSD,$USDTUSD,$LTCUSD,$BNBUSD,$LINKUSD,$TRXUSD,$XLMUSD,$XMRUSD,$DOGEUSD
