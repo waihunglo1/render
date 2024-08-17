@@ -1,5 +1,4 @@
 var express = require('express');
-var axios = require('axios').default;
 const helper = require('./helper.js');
 const config = require('./config.js');
 const stockcharts = require('./stockcharts-utils.js')

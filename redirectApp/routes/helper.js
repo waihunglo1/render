@@ -26,10 +26,34 @@ const round = (num, decimalPlaces = 0) => {
     var p = Math.pow(10, decimalPlaces);
     var n = (num * p) * (1 + Number.EPSILON);
     return +Number(Math.round(n) / p).toFixed(2);
-} 
+}
+
+const isValidIsinCode = (isin_code) => {
+    // Regex to check valid
+    // ISIN CODE
+    let regex = new RegExp(/^[A-Z]{2}[-]{0, 1}[0-9A-Z]{8}[-]{0, 1}[0-9]{1}$/);
+
+    console.log(isin_code + ":" + regex.test(isin_code));
+ 
+    // ISIN CODE
+    // is empty return false
+    if (isin_code == null) {
+        return "false";
+    }
+ 
+    // Return true if the isin_code
+    // matched the ReGex
+    if (regex.test(isin_code) == true) {
+        return "true";
+    }
+    else {
+        return "false";
+    }
+}
  
 module.exports = {
     determineDays,
     round,
-    isEmpty
+    isEmpty,
+    isValidIsinCode
 };

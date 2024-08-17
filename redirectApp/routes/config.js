@@ -55,11 +55,15 @@ const stockCodeByKey = (key) => {
   return stockCode;  
 }
 
+const retrievePortfolios = () => {
+  return doc.portfolios;
+}
 
 module.exports = {
     read,
     breadthByKey,
     tradingViewExchangeByKey,
     tradingViewCodeByKey,
-    stockCodeByKey
+    stockCodeByKey,
+    retrievePortfolios
 };

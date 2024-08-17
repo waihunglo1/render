@@ -15,6 +15,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 var indexRouter = require('./routes/index');
 var yahooRouter = require('./routes/yahoo');
 var dataScanRouter = require('./routes/scan');
+var portfolioRouter = require('./routes/portfolio');
 
 /**
  * Proxy endpoints for /stockcharts routing
@@ -48,6 +49,7 @@ app.use(cors()); // disable cors
 app.use('/', indexRouter);
 app.use('/yahoo', yahooRouter);
 app.use('/dscan', dataScanRouter);
+app.use('/portfolios', portfolioRouter);
 app.use('/stockcharts', myProxy);
 
 /**
