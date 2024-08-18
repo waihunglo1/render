@@ -78,23 +78,43 @@ const fillData = async (dataUrl) => {
     let object = new Object();
     var bars = [];
 
+    https://whalewisdom.com/filer/holdings?
+    
+
+
     var bar = new Promise((resolve, reject) => {
-        axios.get(dataUrl, {
+        axios.get("https://whalewisdom.com/filer/holdings", {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1'
             },            
             params: {
+                id: "duquesne-family-office-llc",
+                q1: -1,
+                type_filter: "1,2,3,4",
+                symbol: "",
+                change_filter: "",
+                minimum_ranking: "",
+                minimum_shares: "",
+                is_etf: 0,
+                sc: false,
+                sort: "current_mv",
+                order: "desc",
+                offset: "",
+                limit: 1
             }
         })
         .then(function (response) {
-            var row = [];
+            var dataRow = [];
             var i = 0;
-            response.data.forEach(element => {
-                if (validator(element.name)) {
-                    row[i++] = element.name;   
+            // console.log(response);
+            console.log("record : " + response.data.records);
+
+            response.data.rows.forEach(element => {
+                if (validator(element.symbol)) {
+                    dataRow[i++] = element.symbol;
                 }
             });
-            resolve(row);
+            resolve(dataRow);
         })
         .catch(function (error) {
             console.log(error);
