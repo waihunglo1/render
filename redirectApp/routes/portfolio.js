@@ -5,7 +5,7 @@ const helper = require('./helper.js');
 const config = require('./config.js');
 var axios = require('axios').default;
 var axiosDebug = require('axios-debug-log/enable');
-axios.defaults.timeout = 3000;
+axios.defaults.timeout = 1000;
 
 /*
  * main function
@@ -55,7 +55,12 @@ const handleElement = async (element, api) => {
     if(helper.isEmpty(element.id)) {
         obj.data = element.data.split(",");
      } else if(api == true && ! helper.isEmpty(element.id)) {
-        obj.data = await retrievePortfolioById(element.id) 
+        var retObj = await retrievePortfolioById(element.id) 
+        if(retObj == null) {
+            obj.data = element.data.split(","); // backup
+        } else {
+            obj.data = retObj;
+        }
      } else {
         obj.data = element.data.split(",");
      }
@@ -70,6 +75,10 @@ const handleElement = async (element, api) => {
  */
 const retrievePortfolioById = async (id) => {
     var obj = await retrievePortfolioByIdWithLimit(id, 1);
+    if (obj == null) {
+        return null;
+    }
+
     console.log(id + " records : " + obj.records);
 
     obj =  await retrievePortfolioByIdWithLimit(id, obj.records);
@@ -121,6 +130,7 @@ const retrievePortfolioByIdWithLimit = async (id, limit) => {
         })
         .catch(function (error) {
             console.log(error);
+            resolve(null);
         })
         .finally(function () {
             // always executed
