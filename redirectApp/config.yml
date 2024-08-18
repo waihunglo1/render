@@ -41,22 +41,22 @@ portfolios:
     chartDataSource: SC
     category: US-CELEBRITY
     data: AAPL,BAC,AXP,KO,CVX,OXY,KHC,MCO,CB,DVA,C,KR,VRSN,V,AMZN,MA,LSXMK,NU,COF,AON,ALLY,CHTR,TMUS,LSXMA,LPX,LLYVK,FND,SIRI,ULTA,LLYVA,HEIA,NVR,DEO,LILA,JEF,VOO,SPY,LENB,LILAK,BATRK
-    dataUrl: https://fintel.io/api/i/alloc/berkshire-hathaway
+    id: berkshire-hathaway-inc
   - desc: Michael-Burry
     chartDataSource: SC  
     category: US-CELEBRITY
     data: BABA,FOUR,MOH,BIDU,JD,HPP,REAL,ACIC,OLPX,BCAB
-    dataUrl: https://fintel.io/api/i/alloc/scion-asset-management-llc
+    id: scion-asset-management-llc
   - desc: Stanley-Druckenmiller
     chartDataSource: SC  
     category: US-CELEBRITY
     data: COHR,CPNG,VST,NTRA,STX,MSFT,WWD,KMI,MAA,PM,ZI,TECK,CPT,FLUT,MELI,FCX,OPCH,GEV,FLEX,SWTX,DAKT,PANW,NVDA,WAB,MSGE,BCS,DFS,ADBE,PLTR,NWSA,ANET,NWS,ARGT,BMA,GGAL,CRNX,BAH,YPF,IQV,LYV,WULF,CNK,SLN,VCYT,AES,AAPL,TPX,LBTYA,SE,LBTYK,EQT,SPHR,ACLX,BLDR,BCYC,IHS,TLSI,GPCR,INSM,TEO,NRIX,IVVD,JOBY
-    dataUrl: https://fintel.io/api/i/alloc/duquesne-family-office-llc
+    id: duquesne-family-office-llc
   - desc: David Tepper
     chartDataSource: SC  
     category: US-CELEBRITY  
     data: GM,GOOG,DAL,HCA,WHR,LUV,ALL,SXL,OC,KMI,BKNG,AAPL,AY,HUN,PFE,PPG,AMLP,GT,NXPI,WPZ,IR,HPE,URI,CBI,EMN,COOP,RRC,TGI,UAL,SWN,CYH,COG,FCX,KYN,EQT,EXP,AR,TOO,SPY,TGP,TYG,XCEMX,CWEN,BAC,LEN,RF,DHI,MAS,BABA,MHK
-    dataUrl: https://fintel.io/api/i/alloc/appaloosa-management-lp
+    id: appaloosa-management-lp
     #
     # US INDEX
     #

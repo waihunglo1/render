@@ -5,27 +5,16 @@ const helper = require('./helper.js');
 const config = require('./config.js');
 var axios = require('axios').default;
 var axiosDebug = require('axios-debug-log/enable');
+axios.defaults.timeout = 3000;
 
 /*
  * main function
  */
 router.get('/', function (req, res, next) {
-    const api = req.query.api;
-    if (!helper.isEmpty(api)) {
-      fillDataSync(true)
-        .then(function (dataList) {
-          res.json(dataList);
-        });   
-    } else {
-      fillDataSync(false)
-        .then(function (dataList) {
-          res.json(dataList);
-        }); 
-    }
-  
-
-
-    // return res.json(responseJson);
+    fillDataSync(true)
+      .then(function (dataList) {
+        res.json(dataList);
+      });   
 });
 
 /**
@@ -50,6 +39,12 @@ const fillDataSync = async (api) => {
     return obj;
 }
 
+/**
+ * 
+ * @param {*} element 
+ * @param {*} api 
+ * @returns 
+ */
 const handleElement = async (element, api) => {
     var obj = new Object();
 
@@ -57,10 +52,10 @@ const handleElement = async (element, api) => {
     obj.chartDataSource = element.chartDataSource;
     obj.category = element.category
 
-    if(helper.isEmpty(element.dataUrl)) {
+    if(helper.isEmpty(element.id)) {
         obj.data = element.data.split(",");
-     } else if(api == true && ! helper.isEmpty(element.dataUrl)) {
-        obj.data = await fillData(element.dataUrl) 
+     } else if(api == true && ! helper.isEmpty(element.id)) {
+        obj.data = await retrievePortfolioById(element.id) 
      } else {
         obj.data = element.data.split(",");
      }
@@ -70,17 +65,25 @@ const handleElement = async (element, api) => {
 
 /**
  * 
+ * @param {*} id 
+ * @returns 
+ */
+const retrievePortfolioById = async (id) => {
+    var obj = await retrievePortfolioByIdWithLimit(id, 1);
+    console.log(id + " records : " + obj.records);
+
+    obj =  await retrievePortfolioByIdWithLimit(id, obj.records);
+    return obj.dataRow;
+}
+
+/**
+ * 
  * @param {*} data 
  * @returns 
  */
-const fillData = async (dataUrl) => {
-    console.log(dataUrl);
+const retrievePortfolioByIdWithLimit = async (id, limit) => {
     let object = new Object();
     var bars = [];
-
-    https://whalewisdom.com/filer/holdings?
-    
-
 
     var bar = new Promise((resolve, reject) => {
         axios.get("https://whalewisdom.com/filer/holdings", {
@@ -88,7 +91,7 @@ const fillData = async (dataUrl) => {
                 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1'
             },            
             params: {
-                id: "duquesne-family-office-llc",
+                id: id,
                 q1: -1,
                 type_filter: "1,2,3,4",
                 symbol: "",
@@ -100,21 +103,21 @@ const fillData = async (dataUrl) => {
                 sort: "current_mv",
                 order: "desc",
                 offset: "",
-                limit: 1
+                limit: limit
             }
         })
         .then(function (response) {
-            var dataRow = [];
+            var retObject = new Object();
             var i = 0;
-            // console.log(response);
-            console.log("record : " + response.data.records);
+            retObject.records = response.data.records;
+            retObject.dataRow = [];
 
             response.data.rows.forEach(element => {
                 if (validator(element.symbol)) {
-                    dataRow[i++] = element.symbol;
+                    retObject.dataRow[i++] = element.symbol;
                 }
             });
-            resolve(dataRow);
+            resolve(retObject);
         })
         .catch(function (error) {
             console.log(error);
