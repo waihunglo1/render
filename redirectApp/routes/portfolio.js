@@ -114,7 +114,7 @@ const retrievePortfolioByIdWithLimit = async (id, limit) => {
 
             response.data.rows.forEach(element => {
                 if (validator(element.symbol)) {
-                    retObject.dataRow[i++] = element.symbol;
+                    retObject.dataRow[i++] = element.symbol.replace(".","/");
                 }
             });
             resolve(retObject);
