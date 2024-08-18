@@ -20,7 +20,7 @@ const queryMultipleStockTechIndicator = async (stockCodes, taIndicatorStr) => {
     var bar = new Promise((resolve, reject) => {
       var stock = {
         "symbol": code,
-        "extra": 999,
+        "extra": -1,
         "errmsg":""
       }
       queryHistoryPrices(todayStr, stock, taIndicatorStr)
