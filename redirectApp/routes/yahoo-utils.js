@@ -98,7 +98,7 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
       stock.vol = row.volume;
     });
 
-    // fill data scan
+    // fill data scan from stockchart.com data scan
     await stockcharts.fillDataScan(stock);
 
     // fill exchange

@@ -11,7 +11,8 @@ const fillDataScan = async (stock) => {
     if(! helper.isEmpty(breadth)) {
         const resolvedPromise = new Promise((resolve, reject) => {
             var stockCodes = breadth.split(",");
-            var row = queryDataScan(stockCodes,"M12");
+            var row = queryStockChartsDataScan(stockCodes,"M12");
+            stock.breadthSymbols = stockCodes;
             resolve(row);
         });
 
@@ -29,7 +30,7 @@ const fillDataScan = async (stock) => {
  * @param {*} stockCodes 
  * @param {*} taIndicatorStr 
  */  
- const queryDataScan = async (stockCodes, taIndicatorStr) => {
+ const queryStockChartsDataScan = async (stockCodes, taIndicatorStr) => {
     const scanDataUrl = "https://stockcharts.com/def/servlet/SC.uscan";
     const stockCodesStr = stockCodes.join(",") + "|" + taIndicatorStr;
     let object = new Object();
@@ -74,6 +75,5 @@ const fillDataScan = async (stock) => {
 }
  
 module.exports = {
-    queryDataScan,
     fillDataScan
 };
