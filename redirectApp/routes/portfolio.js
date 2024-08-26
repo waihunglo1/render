@@ -11,7 +11,14 @@ axios.defaults.timeout = 1000;
  * main function
  */
 router.get('/', function (req, res, next) {
-    fillDataSync(true)
+    const api = req.query.api;
+    
+    var shouldCallApi = false;
+    if (!helper.isEmpty(api)) {
+        shouldCallApi = true;
+    }
+
+    fillDataSync(shouldCallApi)
       .then(function (dataList) {
         res.json(dataList);
       });   
