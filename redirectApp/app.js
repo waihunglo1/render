@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var yahooRouter = require('./routes/yahoo');
 var dataScanRouter = require('./routes/scan');
 var portfolioRouter = require('./routes/portfolio');
+var healthCheckRouter = require('./routes/healthcheck');
 
 /**
  * Proxy endpoints for /stockcharts routing
@@ -47,6 +48,7 @@ app.use(cors()); // disable cors
  * setup entry point
  */
 app.use('/', indexRouter);
+app.use('/hc', healthCheckRouter)
 app.use('/yahoo', yahooRouter);
 app.use('/dscan', dataScanRouter);
 app.use('/portfolios', portfolioRouter);
