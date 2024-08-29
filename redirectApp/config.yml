@@ -75,14 +75,18 @@ portfolios:
     #
     # ROUTINE LIST
     #
-  - desc: ROUTINE-NON-TECH
-    chartDataSource: SC
-    category: US-ROUTINE
-    data: BA,BAC,CAT,COST,F,GE,GS,HD,JPM,KO,MA,MCD,MMM,NOW,PG,SHW,UNH,XOM,OXY,V
   - desc: ROUTINE-ETF
     chartDataSource: SC
     category: US-ROUTINE
     data: AIQ,BLOK,BOTZ,CIBR,COPX,GDX,IBB,IGV,IHI,ITA,KBWB,KWEB,NLR,PAVE,SMH,TAN,TLT,URA,VNQ,XHB,XLY,XRT,HYG,BKCH,KIE
+  - desc: ROUTINE-NON-TECH
+    chartDataSource: SC
+    category: US-ROUTINE
+    data: BA,BAC,CAT,COST,F,GE,GS,HD,JPM,KO,MA,MCD,MMM,NOW,PG,SHW,UNH,XOM,OXY,V
+  - desc: ROUTINE-TECH
+    chartDataSource: SC
+    category: US-ROUTINE
+    data: AAPL,ADBE,AMZN,AMD,AVGO,CRM,GOOGL,IBM,META,MSFT,NFLX,Now,NVDA,SHOP,TSLA
     #
     # AI THEME
     #    
