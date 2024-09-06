@@ -6,15 +6,15 @@ const config = require('./config.js');
 
 /**
  * 
- * @param {*} todayStr 
+ * @param {*} targetDateStr 
  * @param {*} stockCodes 
  * @returns 
  */
 const queryMultipleStockTechIndicator = async (stockCodes, taIndicatorStr) => {
   var bars = [];
   var stockList = [];
-  var todayStr = helper.determineDays(taIndicatorStr);
-  console.log("date:" + todayStr + " cgo:" + stockCodes);
+  var targetDateStr = helper.determineTargetDateString(taIndicatorStr);
+  console.log("date:" + targetDateStr + " cgo:" + stockCodes);
 
   stockCodes.forEach(code => {
     var bar = new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ const queryMultipleStockTechIndicator = async (stockCodes, taIndicatorStr) => {
         "extra": -1,
         "errmsg":""
       }
-      queryHistoryPrices(todayStr, stock, taIndicatorStr)
+      queryHistoryPrices(targetDateStr, stock, taIndicatorStr)
         .then(function () {
           stockList.push(stock);
           resolve(stock);
@@ -48,14 +48,14 @@ const queryMultipleStockTechIndicator = async (stockCodes, taIndicatorStr) => {
   
 /**
  * 
- * @param {*} todayStr 
+ * @param {*} targetDateStr 
  * @param {*} stockCodeStr 
  * @returns 
  */
-const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
+const queryHistoryPrices = async (targetDateStr, stock, taIndicatorStr) => {
   try {
     // format query options
-    const queryOptions = { period1: todayStr, /* ... */ };
+    const queryOptions = { period1: targetDateStr, /* ... */ };
     const stockPrices = await yahooFinance.historical(stock.symbol, queryOptions);
 
     // create tech indicator
@@ -64,8 +64,6 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
     const sma50 = new taIndicator.SMA(50);
     const sma20 = new taIndicator.SMA(20);
     const sma10 = new taIndicator.SMA(10);
-
-    console.log("taIndicatorStr :" + taIndicatorStr);
 
     // calculate
     stockPrices.forEach((row, idx) => {
@@ -85,7 +83,7 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
         stock.extra = helper.round((stock.close - stock.sma50) / stock.sma50 * 100, 2);
         stock.sma50df = helper.round((stock.close - stock.sma50) / stock.sma50 * 100, 2);
         stock.sma20df = helper.round((stock.close - stock.sma20) / stock.sma20 * 100, 2);
-        stock.sma10df = helper.round((stock.close - stock.sma10) / stock.sma10 * 100, 2);        
+        stock.sma10df = helper.round((stock.close - stock.sma10) / stock.sma10 * 100, 2);  
       } else {
         stock.extra = 0;
       }
@@ -96,6 +94,7 @@ const queryHistoryPrices = async (todayStr, stock, taIndicatorStr) => {
       stock.high = row.high;
       stock.low = row.low;
       stock.vol = row.volume;
+      stock.taIndicator = taIndicatorStr;
     });
 
     // fill data scan from stockchart.com data scan

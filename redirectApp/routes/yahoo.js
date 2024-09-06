@@ -9,10 +9,13 @@ const yahooutils = require('./yahoo-utils.js');
 router.get('/', function (req, res, next) {
   const cgo = req.query.cgo;
   var stockCodes = [];
-  var taIndicatorStr = "M12";
   if (!helper.isEmpty(cgo)) {
     stockCodes = cgo.split("|")[0].split(",");
-    taIndicatorStr = cgo.split("|")[1];
+    var taIndicatorStr = cgo.split("|")[1];
+
+    if(helper.isEmpty(taIndicatorStr)) {
+      taIndicatorStr = "M12";
+    }
 
     yahooutils.queryMultipleStockTechIndicator(stockCodes, taIndicatorStr)
       .then(function (stocks) {
@@ -27,7 +30,6 @@ router.get('/', function (req, res, next) {
 router.get('/summary', function (req, res, next) {
   const cgo = req.query.cgo;
   var stockCodes = [];
-  var taIndicatorStr = "M12";
   if (!helper.isEmpty(cgo)) {
     stockCodes = cgo.split("|")[0].split(",");
 

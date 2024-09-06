@@ -7,9 +7,9 @@ const isEmpty = (str) => {
         return false;
 }
 
-const determineDays = (taIndicatorStr) => {
+const determineTargetDateString = (taIndicatorStr) => {
     var days = 25;
-    if (taIndicatorStr == "S50DF") {
+    if (taIndicatorStr == "S50DF" || taIndicatorStr == "VP") {
       days = 80;    
     }
     var targetDate = moment().subtract(days, "days");
@@ -52,7 +52,7 @@ const isValidIsinCode = (isin_code) => {
 }
  
 module.exports = {
-    determineDays,
+    determineTargetDateString,
     round,
     isEmpty,
     isValidIsinCode
