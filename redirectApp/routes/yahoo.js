@@ -6,7 +6,7 @@ const yahooutils = require('./yahoo-utils.js');
 /**
  * main function
  */
-router.get('/', function (req, res, next) {
+router.get('/taIndicator', function (req, res, next) {
   const cgo = req.query.cgo;
   var stockCodes = [];
   if (!helper.isEmpty(cgo)) {

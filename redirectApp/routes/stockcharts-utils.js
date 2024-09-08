@@ -30,7 +30,7 @@ const fillDataScan = async (stock) => {
  * @param {*} stockCodes 
  * @param {*} taIndicatorStr 
  */  
- const queryStockChartsDataScan = async (stockCodes, taIndicatorStr) => {
+const queryStockChartsDataScan = async (stockCodes, taIndicatorStr) => {
     const scanDataUrl = "https://stockcharts.com/def/servlet/SC.uscan";
     const stockCodesStr = stockCodes.join(",") + "|" + taIndicatorStr;
     let object = new Object();

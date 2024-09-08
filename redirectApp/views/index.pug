@@ -3,15 +3,15 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href='/yahoo?cgo=^IXIC,^GSPC,^DJI|S50DF&p=1&format=json&order=d') index-scan
+  a(href='/yahoo/taIndicator?cgo=^IXIC,^GSPC,^DJI|S50DF&p=1&format=json&order=d') index-scan
   br
-  a(href='/yahoo?cgo=0001.HK,0002.HK,0003.HK|B14') Hk-scan
+  a(href='/yahoo/taIndicator?cgo=0001.HK,0002.HK,0003.HK|B14') Hk-scan
   br
-  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|B14&p=1&format=json&order=d') ROC
+  a(href='/yahoo/taIndicator?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|B14&p=1&format=json&order=d') ROC
   br
-  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|M12&p=1&format=json&order=d') RSI
+  a(href='/yahoo/taIndicator?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|M12&p=1&format=json&order=d') RSI
   br
-  a(href='/yahoo?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|S50DF&p=1&format=json&order=d') SMA50-DIF
+  a(href='/yahoo/taIndicator?cgo=SPY,MSFT,CPNG,TECK,VST,NTRA,NVDA,COHR,GE,WWD,STX,ANET,FLEX,ZI,NWSA,DFS,VRT,KMI,FCX,KBR,MRVL,WAB,LLY,PANW,CCJ|S50DF&p=1&format=json&order=d') SMA50-DIF
   br  
   a(href='/dscan?cgo=$NAA20R,$NAA50R,$NAA150R,$NAA200R') market breadth
   br

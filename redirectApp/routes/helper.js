@@ -9,12 +9,21 @@ const isEmpty = (str) => {
 
 const determineTargetDateString = (taIndicatorStr) => {
     var days = 25;
-    if (taIndicatorStr == "S50DF" || taIndicatorStr == "VP") {
+    if (taIndicatorStr == "S50DF") {
       days = 80;    
     }
+    else if (taIndicatorStr == "VP") {
+        days = 150;    
+    }
+  
+
     var targetDate = moment().subtract(days, "days");
     var todayStr = targetDate.format("YYYY-MM-DD");
     return todayStr;
+}
+
+const formatDate = (sourceDate, formatStr) => {
+    return moment(sourceDate).format(formatStr);
 }
   
 /**
@@ -55,5 +64,6 @@ module.exports = {
     determineTargetDateString,
     round,
     isEmpty,
-    isValidIsinCode
+    isValidIsinCode,
+    formatDate
 };
