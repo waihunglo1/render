@@ -97,7 +97,6 @@ const calculateTechIndicator = async (result, stock, taIndicatorStr) => {
   const sma20 = new taIndicator.SMA(20);
   const sma10 = new taIndicator.SMA(10);
   var lastQuote = null;
-  var vpCandles = [];
 
   // calculate
   result.quotes.forEach((quote, idx) => {
@@ -107,8 +106,6 @@ const calculateTechIndicator = async (result, stock, taIndicatorStr) => {
       stock.extra = rsi.nextValue(quote.close);
     } else if (taIndicatorStr == "S50DF") {
       sma(stock, sma50, sma20, sma10, quote);
-    } else if (taIndicatorStr == "VP") {
-      vpCandles.push(toCandle(quote));
     } else {
       stock.extra = 0;
     }
@@ -127,36 +124,6 @@ const calculateTechIndicator = async (result, stock, taIndicatorStr) => {
   // taIndicator
   stock.taIndicator = taIndicatorStr;
   stock.extra = helper.round(stock.extra, 2);
-  doVolumeProfile();
-}
-
-function doVolumeProfile(stock, taIndicatorStr, vpCandles) {
-  if (taIndicatorStr != "VP") {
-    return;
-  }
-
-  const map1 = new Map();
-  const vp = new taIndicator.VolumeProfile(1);
-  for (const candle of vpCandles) {
-    vp.nextValue(candle);
-  }
-  const vpSession = vp.getSession(vpCandles[vpCandles.length - 1]);
-  vpSession.forEach((volume, price) => {
-    map1[price] = volume;
-  });
-
-  console.log(map1);
-}
-
-function toCandle(quote) {
-  var candle = new Object();
-  candle.time = quote.date.getTime();
-  candle.o = quote.open;
-  candle.c = quote.close;
-  candle.h = quote.high;
-  candle.l = quote.low;
-  candle.v = quote.volume;
-  return candle;
 }
 
 /**
