@@ -2,6 +2,69 @@ const axios = require('axios').default;
 const config = require('./config.js');
 const helper = require('./helper.js');
 
+
+const sctr = async(sizeOfCorp) => {
+    const resolvedPromise = new Promise((resolve, reject) => {
+        var row = retrieveStockChartSCTR(sizeOfCorp);
+        resolve(row);
+    });
+
+    let object = new Object();
+    await Promise.all([resolvedPromise])
+      .then((values) => {
+        // console.log(values);
+        object = values[0];
+    });    
+
+    return object;
+}
+
+/**
+ * 
+ * @param {*} data 
+ * @returns 
+ */
+const retrieveStockChartSCTR = async (sizeOfCorp) => {
+    let object = new Object();
+    var bars = [];
+
+    var bar = new Promise((resolve, reject) => {
+        axios.get("https://stockcharts.com/j-sum/sum", {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1'
+            },            
+            params: {
+                cmd: "sctr",
+                view: sizeOfCorp,
+                timeframe: "E",
+                r: 1745130832563
+            }
+        })
+        .then(function (response) {
+            var retObject = new Object();
+            retObject.data = response.data;
+            resolve(retObject);
+        })
+        .catch(function (error) {
+            console.log(error);
+            resolve(null);
+        })
+        .finally(function () {
+            // always executed
+        });
+    });
+
+    bars.push(bar);
+
+    await Promise.all(bars)
+      .then((values) => {
+        console.log(values);
+        object = values[0];
+    });    
+
+    return object;
+}
+
 /**
  * 
  * @param {*} stock 
@@ -75,5 +138,6 @@ const queryStockChartsDataScan = async (stockCodes, taIndicatorStr) => {
 }
  
 module.exports = {
-    fillDataScan
+    fillDataScan,
+    sctr
 };

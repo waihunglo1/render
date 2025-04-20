@@ -23,4 +23,18 @@ router.get('/', function (req, res, next) {
     }   
   });
 
+/**
+ * main function
+ */
+router.get('/sctr', function (req, res, next) {
+  const cmd = req.query.cmd;
+  if (!helper.isEmpty(cmd)) {
+    stockcharts.sctr(cmd)
+      .then(function (row) {
+        console.log(row);
+        res.json(row);
+      });      
+  }   
+});  
+
 module.exports = router;
