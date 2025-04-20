@@ -26,6 +26,9 @@ const options = {
   changeOrigin: true,
   pathRewrite: {
       [`^/stockcharts`]: '',
+  },
+  onProxyRes: function (proxyRes, req, res) {
+    proxyRes.headers['Access-Control-Allow-Origin'] = '*';
   }
 };
 
