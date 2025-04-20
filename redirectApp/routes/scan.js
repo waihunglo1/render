@@ -27,11 +27,10 @@ router.get('/', function (req, res, next) {
  * main function
  */
 router.get('/sctr', function (req, res, next) {
-  const cmd = req.query.cmd;
-  if (!helper.isEmpty(cmd)) {
-    stockcharts.sctr(cmd)
+  const view = req.query.view;
+  if (!helper.isEmpty(view)) {
+    stockcharts.sctr(view)
       .then(function (row) {
-        console.log(row);
         res.json(row);
       });      
   }   
