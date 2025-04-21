@@ -31,8 +31,8 @@ exchanges:
   - name: DJI
     tradingView: TVC
   - name: SNP
-    tradingView: TVC    
-      
+    tradingView: TVC
+
 portfolios:
     #
     # CELEBRITY

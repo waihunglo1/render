@@ -24,16 +24,16 @@ router.get('/', function (req, res, next) {
   });
 
 /**
- * main function
+ * sctr function
  */
-router.get('/sctr', function (req, res, next) {
+router.get('/v1/sctr', function (req, res, next) {
   const view = req.query.view;
   if (!helper.isEmpty(view)) {
-    stockcharts.sctr(view)
+    stockcharts.simpleSctr(view)
       .then(function (row) {
         res.json(row);
-      });      
+      });
   }   
-});  
+});
 
 module.exports = router;

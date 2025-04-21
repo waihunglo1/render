@@ -2,8 +2,12 @@ const axios = require('axios').default;
 const config = require('./config.js');
 const helper = require('./helper.js');
 
-
-const sctr = async(sizeOfCorp) => {
+/**
+ * 
+ * @param {*} sizeOfCorp 
+ * @returns 
+ */
+const simpleSctr = async(sizeOfCorp) => {
     const resolvedPromise = new Promise((resolve, reject) => {
         var row = retrieveStockChartSCTR(sizeOfCorp);
         resolve(row);
@@ -139,5 +143,5 @@ const queryStockChartsDataScan = async (stockCodes, taIndicatorStr) => {
  
 module.exports = {
     fillDataScan,
-    sctr
+    simpleSctr
 };
