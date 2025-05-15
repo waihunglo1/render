@@ -1,4 +1,5 @@
 const moment = require('moment');
+var fincal = require("fincal");
 
 const isEmpty = (str) => {
     if (typeof str == 'undefined' || !str || str.length === 0 || str === "" || !/[^\s]/.test(str) || /^\s*$/.test(str) || str.replace(/\s/g,"") === "")
@@ -16,10 +17,21 @@ const determineTargetDateString = (taIndicatorStr) => {
         days = 150;    
     }
   
+    // Calendar class
+    var hkCalendar = fincal.calendar("hong_kong");
+    var previousTradingDate = hkCalendar.previousTradingDay(moment(), "YYYY-MM-DD");
+    var targetDate = moment(previousTradingDate).subtract(days, "days");
+    var targetTradingDate = hkCalendar.previousTradingDay(targetDate, "YYYY-MM-DD");
+    var formattedTargetTradingDate = targetTradingDate.format("YYYY-MM-DD");
 
-    var targetDate = moment().subtract(days, "days");
-    var todayStr = targetDate.format("YYYY-MM-DD");
-    return todayStr;
+    // console.log(hkCalendar.name); // > "New York"
+    // console.log(hkCalendar.locale); // > [Object]
+    console.log("date range: " + formatDate(previousTradingDate,"YYYY-MM-DD") + " to " + formattedTargetTradingDate); 
+
+    return {
+        startDate: formattedTargetTradingDate,
+        endDate:   formatDate(previousTradingDate,"YYYY-MM-DD")
+    };
 }
 
 const formatDate = (sourceDate, formatStr) => {

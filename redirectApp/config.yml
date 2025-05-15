@@ -1,6 +1,14 @@
 ---
-# A sample yaml file
+# 
 company: spacelift
+
+# Market breadth reader
+stockList:
+  - name: hkex
+    desc: Hong Kong Stock Exchange
+    link: https://www.hkex.com.hk/eng/services/trading/securities/securitieslists/ListOfSecurities.xlsx
+
+# Indexs / exchanges / portfolios / sectors / themes
 indexes:
   - name: IXIC
     breadth: $NAA20R,$NAA50R,$NAA150R,$NAA200R

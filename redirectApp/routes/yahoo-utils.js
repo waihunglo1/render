@@ -20,18 +20,18 @@ const CookieFileStore = require('tough-cookie-file-store').FileCookieStore
 const queryMultipleStockTechIndicator = async (stockCodes, taIndicatorStr) => {
   var bars = [];
   var stockList = [];
-  var startDateStr = helper.determineTargetDateString(taIndicatorStr);
-  console.log("startDate:" + startDateStr + " cgo:" + stockCodes);
+  var {startDate, endDate} = helper.determineTargetDateString(taIndicatorStr);
+  console.log("startDate:" + startDate + "/" + endDate + " cgo:" + stockCodes);
 
   stockCodes.forEach(code => {
     var bar = new Promise((resolve, reject) => {
       var stock = {
-        "fromDate": startDateStr,
+        "fromDate": startDate,
         "symbol": code,
         "extra": -1,
         "errmsg":""
       }
-      queryHistoryPrices(startDateStr, stock, taIndicatorStr)
+      queryHistoryPrices(startDate, stock, taIndicatorStr)
         .then(function () {
           stockList.push(stock);
           resolve(stock);

@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "fincal": "^1.0.6",
     "fix-esm": "^1.0.1",
     "highlight.js": "^11.9.0",
     "http-errors": "~1.6.3",

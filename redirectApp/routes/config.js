@@ -59,11 +59,22 @@ const retrievePortfolios = () => {
   return doc.portfolios;
 }
 
+const stockListLinkByKey = (key) => {
+  var link = null;
+  doc.stockList.forEach(element => {
+    if(key.includes(element.name)) {
+      link = element.link;
+    }
+    });
+  return link;  
+}
+
 module.exports = {
     read,
     breadthByKey,
     tradingViewExchangeByKey,
     tradingViewCodeByKey,
     stockCodeByKey,
-    retrievePortfolios
+    retrievePortfolios,
+    stockListLinkByKey
   };

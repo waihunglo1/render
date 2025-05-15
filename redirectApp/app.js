@@ -17,6 +17,7 @@ var yahooRouter = require('./routes/yahoo');
 var dataScanRouter = require('./routes/scan');
 var portfolioRouter = require('./routes/portfolio');
 var healthCheckRouter = require('./routes/healthcheck');
+var mmRouter = require('./routes/mm');
 
 /**
  * Proxy endpoints for /stockcharts routing
@@ -55,6 +56,7 @@ app.use('/hc', healthCheckRouter)
 app.use('/yahoo', yahooRouter);
 app.use('/dscan', dataScanRouter);
 app.use('/portfolios', portfolioRouter);
+app.use('/mm', mmRouter);
 app.use('/stockcharts', myProxy);
 
 /**
