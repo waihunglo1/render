@@ -26,6 +26,12 @@
     "query-string": "^9.0.0",
     "react-router-dom": "^6.24.0",
     "tough-cookie-file-store": "^2.0.3",
-    "yahoo-finance2": "^2.11.3"
+    "yahoo-finance2": "^2.11.3",
+    "@remix-run/node": "^2.16.6",
+    "@remix-run/react": "^2.16.6",
+    "@remix-run/serve": "^2.16.6"
+  },
+  "devDependencies": {
+    "remix-development-tools": "^4.7.7"
   }
 }
